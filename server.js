@@ -1,3 +1,4 @@
+const { token } = require('./config.json');
 const { Client, Intents, MessageEmbed} = require('discord.js');
 const { time } = require('@discordjs/builders');
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_VOICE_STATES"] });
@@ -145,4 +146,4 @@ async function search (message, command) {
 // ****************************************************************************!play song
 
 client.once('ready', () => {console.log('Ready!');});
-client.login("ODg3MTc5MDA5NzIzNjAwOTM3.YUAX1g.a94ahH63-FuATQnrmuWubQnxE_E");
+client.login(token);
