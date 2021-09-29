@@ -25,6 +25,10 @@ const deleted = new Map();
 const usetube = require('usetube')
 
 
+client.on('error', (err) => {
+    console.log(err.message)
+ });
+
 client.on("messageCreate", message => {
     if (message.author.bot) {return;}//if bot, return
     let content = message.content.toLowerCase();//santitize content and make shorthand
@@ -132,8 +136,11 @@ function leave (message){
 function playVideo (link) {
     const stream = ytdl(link, { filter: 'audioonly' });
     const resource = createAudioResource(stream, { inputType: StreamType.Arbitrary });
-    
-    player.play(resource);
+    try{
+        player.play(resource);
+    } catch(error) {
+        console.log(error)
+    }
     connection.subscribe(player);
 }
 
